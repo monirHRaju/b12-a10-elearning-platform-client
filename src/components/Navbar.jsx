@@ -2,7 +2,6 @@ import React from "react";
 import MyContainer from "./MyContainer";
 import { Link } from "react-router";
 import MyNav from "./MyNav";
-import ThemeSwither from "./ThemeSwither";
 import logo from "../assets/e-logo.png"
 import ThemeToggle from "./ThemeToggle";
 const Navbar = () => {
