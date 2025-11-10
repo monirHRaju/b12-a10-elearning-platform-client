@@ -4,6 +4,7 @@ import { Link } from "react-router";
 import MyNav from "./MyNav";
 import ThemeSwither from "./ThemeSwither";
 import logo from "../assets/e-logo.png"
+import ThemeToggle from "./ThemeToggle";
 const Navbar = () => {
 
     const navlinks = <>
@@ -55,7 +56,7 @@ const Navbar = () => {
         <div className="navbar-end">
           <Link to={'/login'} className="btn">Login</Link>
           <a className="btn">Logout</a>
-          <ThemeSwither></ThemeSwither>
+          <ThemeToggle></ThemeToggle>
         </div>
     </div>
       </MyContainer>
