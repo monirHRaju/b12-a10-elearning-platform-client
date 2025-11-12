@@ -13,7 +13,7 @@ const CourseCard = ({course}) => {
                 <h1 className='text-2xl font-bold my-2'>{title}</h1>
             </Link>
             
-            <p>{description.trim(1,7)}...</p>
+            <p>{description.split(" ").slice(0, 10).join(" ") + "..."}</p>
             <p className='text-[12px] text-gray-500 my-3'>
 
                 {instructor_name} | {category}   {

@@ -1,11 +1,13 @@
 import React, { use } from "react";
 import MyContainer from "./MyContainer";
-import { Link } from "react-router";
+import { Link, useNavigate } from "react-router";
 import MyNav from "./MyNav";
 import logo from "../assets/e-logo.png"
 import ThemeToggle from "./ThemeToggle";
 import { AuthContext } from "../context/AuthContext";
+import Swal from "sweetalert2";
 const Navbar = () => {
+  const navigate = useNavigate()
   const {user, signOutUser} = use(AuthContext)
     const navlinks = <>
         <MyNav to={'/'} >Home</MyNav>
@@ -25,7 +27,16 @@ const Navbar = () => {
 
   const handleSignOut = () => {
     signOutUser()
-    .then()
+    .then(() => {
+      Swal.fire({
+                      title: `You are Logged Out!`,
+                      position: "top-end",
+                      icon: "failed",
+                      showConfirmButton: false,
+                      timer: 1500
+                      });
+    navigate('/')
+    })
     .catch(err => console.log(err.message)
     )
   }

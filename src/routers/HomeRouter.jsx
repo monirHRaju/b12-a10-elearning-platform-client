@@ -7,6 +7,10 @@ import Login from "../pages/Login";
 import Register from "../pages/Register";
 import CourseDetails from "../pages/CourseDetails";
 import PrivateRoute from "./PrivateRoute";
+import CreateCourse from "../pages/CreateCourse";
+import MyCourses from "../pages/MyCourses";
+import MyEnrolled from "../pages/MyEnrolled";
+import Error from "../pages/Error";
 
 const router = createBrowserRouter([
     {
@@ -22,13 +26,25 @@ const router = createBrowserRouter([
                 element: <Courses></Courses>
             },
             {
+                path: '/create-course',
+                element: <PrivateRoute><CreateCourse></CreateCourse></PrivateRoute>
+            },
+            {
                 path: '/course-details/:id',
                 // loader: ({params}) => fetch(`http://localhost:3000/courses/${params}`),
-                element: <CourseDetails></CourseDetails>
+                element: <PrivateRoute><CourseDetails></CourseDetails></PrivateRoute>
             },
             {
                 path: '/dashboard',
                 element: <PrivateRoute><Dashboard></Dashboard></PrivateRoute>
+            },
+            {
+                path: '/my-added-courses',
+                element: <PrivateRoute><MyCourses></MyCourses></PrivateRoute>
+            },
+            {
+                path: '/my-enrolled-courses',
+                element: <PrivateRoute><MyEnrolled></MyEnrolled></PrivateRoute>
             },
             {
                 path: '/login',
@@ -37,9 +53,14 @@ const router = createBrowserRouter([
             {
                 path: '/register',
                 element: <Register></Register>
-            }
-        ]
-    }
+            },
+        ],
+        
+    },
+    {
+        path: '/*',
+        element: <Error></Error>
+    },
 ])
 
 

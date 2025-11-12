@@ -3,9 +3,10 @@ import { AuthContext } from '../context/AuthContext';
 import axios from 'axios';
 import Swal from 'sweetalert2';
 import { Link, useNavigate } from 'react-router';
+import { toast } from 'react-toastify';
 
 const Login = () => {
-    const {signInWithGoogle} = useContext(AuthContext)
+    const {signInWithGoogle, signInUser} = useContext(AuthContext)
     // console.log(signInWithGoogle);
     const navigate = useNavigate()
     const handleGoogleSignIn = () => {
@@ -22,11 +23,13 @@ const Login = () => {
             .then( data => {
                 console.log('after creating user', data.data)
                 if(data.data.insertedId){
-                    Swal.fire({
-                    title: "Account Created Successfully!",
-                    icon: "success",
-                    draggable: true
-                    });
+                     Swal.fire({
+                        title: "Account Created & Logged In Successful!",
+                        position: "top-end",
+                        icon: "success",
+                        showConfirmButton: false,
+                        timer: 1500
+                        });
                 }
                 navigate('/')
             })
@@ -38,18 +41,47 @@ const Login = () => {
             
         })
     }
+
+    const handleLogin = (e) => {
+        e.preventDefault()
+        const email = e.target.email.value
+        const password = e.target.password.value
+        signInUser(email, password)
+        .then(res => {
+              console.log(res.user)
+              // navigate(location.state || '/')
+              setTimeout(() => navigate(location.state || '/'), 1000);
+               Swal.fire({
+                title: "Logged In Successfully!",
+                position: "top-end",
+                icon: "success",
+                showConfirmButton: false,
+                timer: 1500
+                });
+            })
+            .catch(error =>  {
+                Swal.fire({
+                title: `Failed Login! ${error.code}`,
+                position: "top-end",
+                icon: "warning",
+                showConfirmButton: false,
+                timer: 2000
+                });
+            })
+    }
+
     return (
         <div className="card bg-base-100 mx-auto w-full max-w-sm shrink-0 shadow-2xl my-20">
             <h1 className="text-3xl font-bold text-center">Login now!</h1>
             <div className="card-body">
-                <form>
+                <form onSubmit={handleLogin}>
                     <fieldset className="fieldset">
                         <label className="label">Email</label>
-                        <input type="email" className="input" placeholder="Email" />
+                        <input type="email" name='email' className="input" placeholder="Email" />
                         <label className="label">Password</label>
-                        <input type="password" className="input" placeholder="Password" />
+                        <input type="password" name='password' className="input" placeholder="Password" />
                         <div><a className="link link-hover">Forgot password?</a></div>
-                        <button className="btn btn-neutral mt-4">Register</button>
+                        <button className="btn btn-neutral mt-4">Login</button>
                     </fieldset>
                     
                     

@@ -99,8 +99,10 @@ const Register = () => {
                 if(data.data.insertedId){
                     Swal.fire({
                     title: "Account Created Successfully!",
+                    position: "top-end",
                     icon: "success",
-                    draggable: false
+                    showConfirmButton: false,
+                    timer: 1500
                     });
                 }
                 navigate('/')
@@ -111,8 +113,10 @@ const Register = () => {
         .catch(err => {
              Swal.fire({
                 title: `Failed! ${err.message}`,
+                position: "top-end",
                 icon: "failed",
-                draggable: false
+                showConfirmButton: false,
+                timer: 1500
                 });
             
         })
