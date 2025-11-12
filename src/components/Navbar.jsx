@@ -31,9 +31,9 @@ const Navbar = () => {
       Swal.fire({
                       title: `You are Logged Out!`,
                       position: "top-end",
-                      icon: "failed",
+                      icon: "warning",
                       showConfirmButton: false,
-                      timer: 1500
+                      timer: 2000
                       });
     navigate('/')
     })

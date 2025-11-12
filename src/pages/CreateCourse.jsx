@@ -1,15 +1,15 @@
-import React, { use, useContext, useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { AuthContext } from '../context/AuthContext';
 import { ToastContainer } from 'react-toastify';
-import axios from 'axios';
 import Swal from 'sweetalert2';
 import { useNavigate } from 'react-router';
+import useAxios from '../hooks/useAxios';
 
 const CreateCourse = () => {
     const {user} = useContext(AuthContext)
     const [isChecked, setIsChecked] = useState(false);
     const navigate = useNavigate()
-
+    const axiosInstance = useAxios()
 
     const handleChange = (e) => {
         setIsChecked(e.target.checked);
@@ -41,7 +41,7 @@ const CreateCourse = () => {
         
         const newCourse = {title, image, price, duration, category, description, difficulty_level, rating, students, isFeatured,instructor_id, instructor_name, email, photo}
         // create user data to mongo db
-            axios.post('http://localhost:3000/courses', newCourse)
+            axiosInstance.post('/courses', newCourse)
             .then( data => {
                 // console.log('after creating course', data.data)
                 if(data.data.insertedId){
@@ -76,20 +76,20 @@ const CreateCourse = () => {
                 <form onSubmit={handleCreateCourse}>
                     <fieldset className="fieldset">
                         <label className="label">Course Title</label>
-                        <input type="text" name='title' className="input" placeholder="Course Title" />
+                        <input type="text" name='title' required className="input" placeholder="Course Title" />
                         
                         <label className="label">Cover Image</label>
-                        <input type="text" name='image' className="input" placeholder="Cover Image" />
+                        <input type="text" name='image' required className="input" placeholder="Cover Image" />
                         
                         <label className="label">Price</label>
-                        <input type="text" name='price' className="input" placeholder="price" />
+                        <input type="text" name='price' required className="input" placeholder="price" />
                         
                         
                         <label className="label">Duration</label>
                         <input type="text" name='duration' className="input" placeholder="duration" />
                         
                         <label className="label">Category</label>
-                        <input type="text" name='category' className="input" placeholder="category" />
+                        <input type="text" name='category' required className="input" placeholder="category" />
                         
                         <label className="label">Description</label>
                         <textarea name='description' className="input" rows='6' placeholder="description" >
