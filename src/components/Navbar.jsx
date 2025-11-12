@@ -1,18 +1,34 @@
-import React from "react";
+import React, { use } from "react";
 import MyContainer from "./MyContainer";
 import { Link } from "react-router";
 import MyNav from "./MyNav";
 import logo from "../assets/e-logo.png"
 import ThemeToggle from "./ThemeToggle";
+import { AuthContext } from "../context/AuthContext";
 const Navbar = () => {
-
+  const {user, signOutUser} = use(AuthContext)
     const navlinks = <>
         <MyNav to={'/'} >Home</MyNav>
         <MyNav to={'/courses'} >Courses</MyNav>
         <MyNav to={'/dashboard'}>Dashboard</MyNav>
-        <MyNav to={'/register'}>Register</MyNav>
+        {
+          !user&& <MyNav to={'/register'}>Register</MyNav>
+        }
+        {
+          user&& <>
+            <MyNav to={'/create-course'} >Create</MyNav>
+            <MyNav to={'/my-added-courses'} >My Added</MyNav>
+            <MyNav to={'/my-enrolled-courses'} >My Enrolled</MyNav>
+          </>
+        }
     </>
 
+  const handleSignOut = () => {
+    signOutUser()
+    .then()
+    .catch(err => console.log(err.message)
+    )
+  }
   return (
       <MyContainer>
     <div className="navbar bg-base-100">
@@ -53,8 +69,12 @@ const Navbar = () => {
           </ul>
         </div>
         <div className="navbar-end">
-          <Link to={'/login'} className="btn">Login</Link>
-          <a className="btn">Logout</a>
+          {
+              user
+                  ? <a onClick={handleSignOut} className="btn btn-primary">Sign Out</a> 
+                  : <Link to="/login" className="btn btn-secondary">Login</Link>
+          }
+         
           <ThemeToggle></ThemeToggle>
         </div>
     </div>
