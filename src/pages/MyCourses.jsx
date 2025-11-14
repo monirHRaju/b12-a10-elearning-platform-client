@@ -29,7 +29,7 @@ const MyCourses = () => {
         <MyContainer>
           <h1 className='text-4xl font-semibold my-15 text-center'>Manage Added Courses</h1>
              <div className="overflow-x-auto">
-        <table className="table">
+        <table className="table mb-[300px]">
           {/* head */}
           <thead>
             <tr>

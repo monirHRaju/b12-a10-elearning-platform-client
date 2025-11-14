@@ -1,12 +1,12 @@
 import React, { use, useContext } from 'react';
 import { AuthContext } from '../context/AuthContext';
-import axios from 'axios';
 import Swal from 'sweetalert2';
 import { Link, useNavigate } from 'react-router';
-import { toast } from 'react-toastify';
+import useAxios from '../hooks/useAxios';
 
 const Login = () => {
     const {signInWithGoogle, signInUser} = useContext(AuthContext)
+    const axiosInstance = useAxios()
     // console.log(signInWithGoogle);
     const navigate = useNavigate()
     const handleGoogleSignIn = () => {
@@ -19,7 +19,7 @@ const Login = () => {
                     image: result.user.photoURL
                 }
             
-            axios.post('http://localhost:3000/users', newUser)
+            axiosInstance.post('/users', newUser)
             .then( data => {
                 console.log('after creating user', data.data)
                 if(data.data.insertedId){

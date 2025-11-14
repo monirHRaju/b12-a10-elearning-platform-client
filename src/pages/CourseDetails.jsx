@@ -6,12 +6,13 @@ import { BiSolidTachometer } from 'react-icons/bi';
 import useAxios from '../hooks/useAxios';
 import { AuthContext } from '../context/AuthContext';
 import Swal from 'sweetalert2';
+import useAxiosSecure from '../hooks/useAxiosSecure';
 
 const CourseDetails = () => {
     const {user} = use(AuthContext)
     const [course, setCourse] = useState([])
     const {id} = useParams()
-    const axiosInstance = useAxios() 
+    const axiosInstance = useAxiosSecure() 
     const navigate = useNavigate()
     // console.log(id)
     
@@ -71,7 +72,7 @@ const CourseDetails = () => {
             <div className='bg-gray-100 pb-12'>
                 <MyContainer>
                     <div className='flex flex-col md:flex-row gap-10 justify-start'>
-                    <div className='border-2 border-white bg-white/30 p-5 rounded-lg shadow-md md:mt-[-120px]'>
+                    <div className='border-2 border-white bg-white p-5 rounded-lg shadow-md md:mt-[-120px]'>
                         <p className='font-semibold border-b-2 border-blue-600'>Description</p>
                         <hr />
                         <p>{course.description}</p>

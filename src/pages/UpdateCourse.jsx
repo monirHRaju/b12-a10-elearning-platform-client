@@ -1,7 +1,10 @@
-import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router';
+import React, { useContext, useEffect, useState } from 'react';
+import { useNavigate, useParams } from 'react-router';
 import useAxiosSecure from '../hooks/useAxiosSecure';
 import { ToastContainer } from 'react-toastify';
+import Swal from 'sweetalert2';
+import { AuthContext } from '../context/AuthContext';
+import useAxios from '../hooks/useAxios';
 
 const UpdateCourse = () => {
     const [course, setCourse] = useState([])
@@ -9,28 +12,77 @@ const UpdateCourse = () => {
     const handleChange = (e) => {
         setIsChecked(e.target.checked);
     };
+    const navigate = useNavigate()
+    const {user} = useContext(AuthContext)
+    const axiosSecure = useAxios()
+    const {id} = useParams()
+    
+    const updateCourseInfo = (e) => {
+        e.preventDefault()
 
-    const updateCourseInfo = () => {
-        console.log('update clicked')
+        const title = e.target.title.value
+        const image = e.target.image.value
+        const price = e.target.price.value
+        const duration = e.target.duration.value
+        const category = e.target.category.value
+        const description = e.target.description.value
+        const difficulty_level = e.target.difficulty_level.value
+        const rating = 0
+        const students = 0
+        const isFeatured = isChecked
+        
+        
+        // user info
+        const instructor_id = user.uid
+        const instructor_name = user.displayName
+        const email = user.email
+        const photo = user.photoURL
+        
+        console.log({title, image, price, duration, category, description, difficulty_level, rating, students, isFeatured})
+
+
+        const updatedCourse = {
+            title, image, price, duration, category, description, difficulty_level, rating, students, isFeatured,instructor_id, instructor_name, email, photo
+        }
+        axiosSecure.patch(`/courses/${course._id}`, updatedCourse)
+        .then( data => {
+                // console.log('after creating course', data.data)
+                if(data.data.insertedId){
+                    Swal.fire({
+                    title: "New Course Created Successfully!",
+                    icon: "success",
+                    draggable: false
+                    });
+                }
+
+                e.target.reset()
+
+                navigate('/my-added-courses')
+            })
+        .catch(err => {
+                Swal.fire({
+                title: `Failed! ${err.message}`,
+                icon: "warning",
+                draggable: false
+                });
+            
+        })
     }
 
 
     
-    const axiosSecure = useAxiosSecure()
-    const {id} = useParams()
-    // console.log(id)
     
     useEffect(()=> {
         axiosSecure.get(`/courses/${id}`)
         .then( data => { 
-            console.log('after getting data', data.data)
+            // console.log('after getting data', data.data)
             setCourse(data.data[0])
 
         })
         
     }, [id, axiosSecure])
     
-    console.log(course)
+    // console.log(course)
     
     return (
         <div>
@@ -57,8 +109,8 @@ const UpdateCourse = () => {
                         <input type="text" name='category' defaultValue={course.category} required className="input" placeholder="category" />
                         
                         <label className="label">Description</label>
-                        <textarea name='description' className="input" rows='15' value={course.description} placeholder="description" >
-                            
+                        <textarea name='description' className="input" defaultValue={course.description} rows='15' placeholder="description" >
+                           
                         </textarea>
                         
                         <label className="label">Level</label>
@@ -71,7 +123,7 @@ const UpdateCourse = () => {
                         <label className="label">
                         <input 
                         type="checkbox"
-                        checked={course.isFeatured}
+                        
                         onChange={handleChange}
                          />
                          Featured Course

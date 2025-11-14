@@ -3,6 +3,7 @@ import { AuthContext } from '../context/AuthContext';
 import useAxiosSecure from '../hooks/useAxiosSecure';
 import MyContainer from '../components/MyContainer';
 import CourseList from '../components/CourseList';
+import MyEnrolledList from '../components/MyEnrolledList';
 
 const MyEnrolled = () => {
     const {user} = use(AuthContext)
@@ -28,7 +29,7 @@ const MyEnrolled = () => {
             <MyContainer>
             <h1 className='text-4xl font-semibold my-15 text-center'>Manage Enrolled Courses</h1>
                 <div className="overflow-x-auto">
-            <table className="table">
+            <table className="table mb-[300px]">
             {/* head */}
             <thead>
                 <tr>
@@ -36,14 +37,13 @@ const MyEnrolled = () => {
                 <th>Title</th>
                 <th>Price</th>
                 <th>Level</th>
-                <th>Action</th>
                 </tr>
             </thead>
             <tbody>
                 
                 {/* row 1 */}
-                {myCourses.map( course => <CourseList key={course._id} course={course}></CourseList>)}
-            
+                {myCourses.map( course => <MyEnrolledList key={course._id} course={course}></MyEnrolledList>)}
+
             </tbody>
             
             

@@ -38,7 +38,7 @@ const CreateCourse = () => {
         const email = user.email
         const photo = user.photoURL
 
-        console.log({title, image, price, duration, category, description, difficulty_level, rating, students, isFeatured,instructor_id, instructor_name, email, photo})
+        // console.log({title, image, price, duration, category, description, difficulty_level, rating, students, isFeatured,instructor_id, instructor_name, email, photo})
         
         const newCourse = {title, image, price, duration, category, description, difficulty_level, rating, students, isFeatured,instructor_id, instructor_name, email, photo}
         // create user data to mongo db

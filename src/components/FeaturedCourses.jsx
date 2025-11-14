@@ -1,19 +1,27 @@
-import React, { use } from 'react';
+import React, { useEffect, useState } from 'react';
 import CourseCard from './CourseCard';
 import MyContainer from './MyContainer';
 import { motion } from "framer-motion";
+import useAxios from '../hooks/useAxios';
 
-
-const featuredCoursesPromise = fetch('http://localhost:3000/featured-courses').then(res => res.json())
 
 const FeaturedCourses = () => {
-    const courses = use(featuredCoursesPromise)
-    // console.log(courses)
+    const [courses, setCourses] = useState([])
+    const axiosInstance = useAxios()
+    
+    useEffect(()=>{
+        axiosInstance.get('/featured-courses')
+        .then(data => {
+            setCourses(data.data)
+        })
+        .catch()
+    },[axiosInstance])
+
     return (
         <MyContainer
         
         >
-            <h1 className='text-4xl font-bold text-primary text-center my-8'>Featured Courses</h1>
+            <h1 className='text-5xl font-bold text-center my-15'>Featured Courses</h1>
             <motion.div 
             initial={{ opacity: 0, y: 60 }}
                 whileInView={{ opacity: 1, y: 0 }}
