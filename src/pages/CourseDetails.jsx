@@ -72,16 +72,16 @@ const CourseDetails = () => {
             <div className='bg-gray-100 pb-12'>
                 <MyContainer>
                     <div className='flex flex-col md:flex-row gap-10 justify-start'>
-                    <div className='border-2 border-white bg-white p-5 rounded-lg shadow-md md:mt-[-120px]'>
-                        <p className='font-semibold border-b-2 border-blue-600'>Description</p>
-                        <hr />
-                        <p>{course.description}</p>
-                    </div>
-                    <div className='border-2 border-white bg-white/30 p-5 rounded-lg shadow-md md:mt-[-70px]'>
-                        <img src={course.image} className='w-[300px] h-[200px]' alt="" />
-                        <h1 className='text-2xl font-bold text-secondary'>$ {course.price}</h1>
-                        <button onClick={handleEnroll} className='btn w-full btn-primary'>Enroll Now</button>
-                    </div>
+                        <div className='border-2 border-white bg-white p-5 rounded-lg shadow-md md:mt-[-120px] flex-1'>
+                            <p className='font-semibold border-b-2 border-blue-600'>Description</p>
+                            <hr />
+                            <p>{course.description}</p>
+                        </div>
+                        <div className='border-2 border-white bg-white/30 p-5 rounded-lg shadow-md md:mt-[-70px] flex flex-col items-center flex-1'>
+                            <img src={course.image} className='w-[300px] h-[200px]' alt="" />
+                            <h1 className='text-2xl font-bold text-secondary'>$ {course.price}</h1>
+                            <button onClick={handleEnroll} className='btn w-full btn-primary'>Enroll Now</button>
+                        </div>
                 </div>
                 </MyContainer>
             </div>       
