@@ -1,23 +1,29 @@
 import React from "react";
+import { Link } from "react-router";
+import { motion } from "framer-motion";
 
 const Banner = () => {
   return (
-    <div className="hero bg-base-200 h-[500px]">
-      <div className="hero-content flex-col lg:flex-row">
+    <div className="hero bg-base-200 ">
+      <motion.div 
+      initial={{ opacity: 0, y: 60 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.7, ease: "easeOut" }}
+                viewport={{ once: false }}   // animate only once
+      
+      className="hero-content flex-col lg:flex-row py-10">
         <img
-          src="https://img.daisyui.com/images/stock/photo-1635805737707-575885ab0820.webp"
+          src="https://goedu.ac/wp-content/uploads/2025/04/banner-goEdu-Student-Sucess-and-GEAC-Certified-1-1.webp"
           className="max-w-sm rounded-lg shadow-2xl"
         />
         <div>
-          <h1 className="text-5xl font-bold">Box Office News!</h1>
+          <h1 className="text-5xl font-bold">Start shaping your future learning online!</h1>
           <p className="py-6">
-            Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda
-            excepturi exercitationem quasi. In deleniti eaque aut repudiandae et
-            a id nisi.
+            Goedu online Courses, your best choice to find the best online courses in Bangladesh Now officially GEAC accredited. Learn at your convenience. Quality professional courses with certificates and varieties of topics.
           </p>
-          <button className="btn btn-primary">Get Started</button>
+          <Link to={'/courses'} className="btn btn-primary">Browse All</Link>
         </div>
-      </div>
+      </motion.div>
     </div>
   );
 };

@@ -10,9 +10,11 @@ const Footer = () => {
         <p>Copyright © {new Date().getFullYear()} - All right reserved</p>
       </aside>
       <nav className="grid-flow-col gap-4 md:place-self-center md:justify-self-end">
-        <FaFacebook size={30}></FaFacebook>
-        <FaXTwitter size={30}></FaXTwitter>
-        <FaInstagram size={30}></FaInstagram>
+       <a href="#" target="_blank"> <FaFacebook size={30}></FaFacebook></a>
+       <a href="#" target="_blank"> <FaXTwitter size={30}></FaXTwitter></a>
+       <a href="#" target="_blank"> <FaInstagram size={30}></FaInstagram></a>
+        
+        
       </nav>
     </footer>
   );
