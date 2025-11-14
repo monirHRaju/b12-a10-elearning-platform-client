@@ -1,8 +1,10 @@
 # E-Learning Online Course
 ## Over 50 million learners have used eLearning Platform to empower themselves
 
-# [Live Link] : 
-# [Github Repo] :
+# [Live Link] : https://elearning-platform-a10.web.app/ 
+# [Github Repo- client] : https://github.com/monirHRaju/b12-a10-elearning-platform-client.git
+# [Github Repo- server] : https://github.com/monirHRaju/b12-a10-elearning-platform-service-.git
+ 
 
 # Technology Used:
 - React.js for Frontend UI
