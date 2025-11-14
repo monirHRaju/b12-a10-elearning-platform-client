@@ -11,6 +11,7 @@ import CreateCourse from "../pages/CreateCourse";
 import MyCourses from "../pages/MyCourses";
 import MyEnrolled from "../pages/MyEnrolled";
 import Error from "../pages/Error";
+import UpdateCourse from "../pages/UpdateCourse";
 
 const router = createBrowserRouter([
     {
@@ -34,6 +35,13 @@ const router = createBrowserRouter([
                 // loader: ({params}) => fetch(`http://localhost:3000/courses/${params}`),
                 element: <PrivateRoute><CourseDetails></CourseDetails></PrivateRoute>
             },
+            
+            {
+                path: '/update-course/:id',
+                // loader: ({params}) => fetch(`http://localhost:3000/courses/${params}`),
+                element: <PrivateRoute><UpdateCourse></UpdateCourse></PrivateRoute>
+            },
+
             {
                 path: '/dashboard',
                 element: <PrivateRoute><Dashboard></Dashboard></PrivateRoute>

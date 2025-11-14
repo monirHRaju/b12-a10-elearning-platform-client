@@ -3,13 +3,14 @@ import { AuthContext } from '../context/AuthContext';
 import { ToastContainer } from 'react-toastify';
 import Swal from 'sweetalert2';
 import { useNavigate } from 'react-router';
-import useAxios from '../hooks/useAxios';
+import useAxiosSecure from '../hooks/useAxiosSecure';
 
 const CreateCourse = () => {
     const {user} = useContext(AuthContext)
     const [isChecked, setIsChecked] = useState(false);
     const navigate = useNavigate()
-    const axiosInstance = useAxios()
+    // const axiosInstance = useAxios()
+    const axiosSecure = useAxiosSecure();
 
     const handleChange = (e) => {
         setIsChecked(e.target.checked);
@@ -41,7 +42,7 @@ const CreateCourse = () => {
         
         const newCourse = {title, image, price, duration, category, description, difficulty_level, rating, students, isFeatured,instructor_id, instructor_name, email, photo}
         // create user data to mongo db
-            axiosInstance.post('/courses', newCourse)
+            axiosSecure.post('/courses', newCourse)
             .then( data => {
                 // console.log('after creating course', data.data)
                 if(data.data.insertedId){

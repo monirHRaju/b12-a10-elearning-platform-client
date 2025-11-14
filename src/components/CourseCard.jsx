@@ -1,10 +1,56 @@
-import React from 'react';
+import React, { use } from 'react';
 import { BiSolidTachometer } from 'react-icons/bi';
 import { FaClock, FaStar, FaUser } from 'react-icons/fa';
-import { Link } from 'react-router';
+import { Link, useNavigate } from 'react-router';
+import { AuthContext } from '../context/AuthContext';
+import Swal from 'sweetalert2';
+import useAxios from '../hooks/useAxios';
 
 const CourseCard = ({course}) => {
     const {_id, title, description, isFeatured, price, image, duration, category, instructor_name, students, difficulty_level, rating} = course
+    const {user} = use(AuthContext)
+    const axiosSecure = useAxios()
+    const navigate = useNavigate()
+    
+    const handleEnroll = () => {
+            if(!user){
+                Swal.fire({
+                title: "Please register/login to enroll",
+                position: "top-end",
+                icon: "failed",
+                showConfirmButton: false,
+                timer: 1500
+                });
+
+                return
+            }
+
+            const enrollData = {
+                ...course, enrolled_by: user.email
+            } 
+            axiosSecure.post('/enroll', enrollData)
+            .then(data  => {
+                console.log(data.data)
+                navigate('/my-enrolled-courses')
+    
+                Swal.fire({
+                title: "Enrolled Successfully!",
+                position: "top-end",
+                icon: "success",
+                showConfirmButton: false,
+                timer: 1500
+                });
+            })
+            .catch(err => {
+                Swal.fire({
+                title: `Failed! Already Enrolled. ${err}`,
+                position: "top-end",
+                icon: "failed",
+                showConfirmButton: false,
+                timer: 1500
+                });
+            })
+        }
 
     return (
         <div className='border border-gray-300 rounded-lg shadow-md p-5'>
@@ -30,42 +76,13 @@ const CourseCard = ({course}) => {
             
             <div className='flex justify-between items-center'>
                 <h3 className='font-semibold'>$ {price}</h3>
-                <Link to={'/enroll'} className='btn btn-primary btn-outline'>Enroll now</Link>
+                <button 
+                onClick={handleEnroll} 
+                className='btn btn-primary btn-outline'>Enroll now</button>
             </div>
             
         </div>
     );
 };
-
-
-// title
-// "React for Beginners"
-// image
-// "https://i.ibb.co.com/wZF0RQQG/Clash-Royale.webp"
-// price
-// 29.99
-// duration
-// "6h 30m"
-// category
-// "Web Development"
-// description
-// "Learn React from scratch and build dynamic web applications using comp…"
-// isFeatured
-// true
-// instructor_id
-// "6757c1f1a1b2c3d4e5f60101"
-// instructor_name
-// "John Doe"
-// email
-// "john.doe@example.com"
-// photo
-// "https://randomuser.me/api/portraits/men/32.jpg"
-// difficulty_level
-// "Beginner"
-// rating
-// 4.7
-// students
-// 2400
-
 
 export default CourseCard;

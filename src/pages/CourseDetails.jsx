@@ -1,24 +1,56 @@
-import axios from 'axios';
-import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router';
+import React, { use, useEffect, useState } from 'react';
+import { useNavigate, useParams } from 'react-router';
 import MyContainer from '../components/MyContainer';
 import { FaClock, FaStar, FaUser } from 'react-icons/fa';
 import { BiSolidTachometer } from 'react-icons/bi';
+import useAxios from '../hooks/useAxios';
+import { AuthContext } from '../context/AuthContext';
+import Swal from 'sweetalert2';
 
 const CourseDetails = () => {
+    const {user} = use(AuthContext)
     const [course, setCourse] = useState([])
     const {id} = useParams()
-    console.log(id)
+    const axiosInstance = useAxios() 
+    const navigate = useNavigate()
+    // console.log(id)
     
     useEffect(()=> {
-        axios.get(`http://localhost:3000/courses/${id}`)
+        axiosInstance.get(`/courses/${id}`)
         .then( data => { 
             console.log('after getting data', data.data)
             setCourse(data.data[0])
         })
     
-    }, [id])
+    }, [id, axiosInstance])
     
+    const handleEnroll = () => {
+        const enrollData = {
+            ...course, enrolled_by: user.email
+        } 
+        axiosInstance.post('/enroll', enrollData)
+        .then(data  => {
+            console.log(data.data)
+            navigate('/my-enrolled-courses')
+
+            Swal.fire({
+            title: "Enrolled Successfully!",
+            position: "top-end",
+            icon: "success",
+            showConfirmButton: false,
+            timer: 1500
+            });
+        })
+        .catch(err => {
+            Swal.fire({
+            title: `Failed! Already Enrolled. ${err}`,
+            position: "top-end",
+            icon: "failed",
+            showConfirmButton: false,
+            timer: 1500
+            });
+        })
+    }
     return (
         <>
             <div className='bg-blue-500 mt-12'>
@@ -47,7 +79,7 @@ const CourseDetails = () => {
                     <div className='border-2 border-white bg-white/30 p-5 rounded-lg shadow-md md:mt-[-70px]'>
                         <img src={course.image} className='w-[300px] h-[200px]' alt="" />
                         <h1 className='text-2xl font-bold text-secondary'>$ {course.price}</h1>
-                        <button className='btn w-full btn-primary'>Enroll Now</button>
+                        <button onClick={handleEnroll} className='btn w-full btn-primary'>Enroll Now</button>
                     </div>
                 </div>
                 </MyContainer>
