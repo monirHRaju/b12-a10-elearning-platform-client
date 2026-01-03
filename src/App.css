@@ -6,11 +6,11 @@
 @plugin "daisyui/theme" {
   name: "light";
   default: true;
-  --color-primary: #6d28d1;
-  --color-secondary: #20222f;
-  --color-base-200: #F3F3F3;
-  --color-base-300: #E7E7E7;
-  --color-accent: #706f6f;
+  --color-primary: #006b61;
+  --color-secondary: #fe8b5c;
+  --color-base-200: #eaecf0;
+  --color-base-300: #f9dccf;
+  --color-accent: #101828;
 }
 
 
