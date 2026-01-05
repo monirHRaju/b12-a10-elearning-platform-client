@@ -15,13 +15,15 @@ const Navbar = () => {
     <>
       <MyNav to="/">Home</MyNav>
       <MyNav to="/courses">Courses</MyNav>
-      <MyNav to="/dashboard">Dashboard</MyNav>
+      <MyNav to="/about">About us</MyNav>
+      <MyNav to="/contact">Contact</MyNav>
+      <MyNav to="/create-course">Post a Course</MyNav>
 
       {!user && <MyNav to="/register">Register</MyNav>}
 
       {user && (
         <>
-          <MyNav to="/create-course">Create</MyNav>
+          
           <MyNav to="/my-added-courses">My Added</MyNav>
           <MyNav to="/my-enrolled-courses">My Enrolled</MyNav>
         </>

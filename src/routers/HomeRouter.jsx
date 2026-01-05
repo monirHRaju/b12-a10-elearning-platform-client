@@ -12,6 +12,8 @@ import MyCourses from "../pages/MyCourses";
 import MyEnrolled from "../pages/MyEnrolled";
 import Error from "../pages/Error";
 import UpdateCourse from "../pages/UpdateCourse";
+import About from "../pages/About";
+import Contact from "../pages/Contact";
 
 const router = createBrowserRouter([
     {
@@ -60,6 +62,16 @@ const router = createBrowserRouter([
                 path: '/register',
                 element: <Register></Register>
             },
+            
+            {
+                path: '/about',
+                element: <About></About>
+            },
+            {
+                path: '/contact',
+                element: <Contact></Contact>
+            },
+
         ],
         
     },
