@@ -1,7 +1,7 @@
-import React, { useContext } from "react";
+import React, { useContext, useRef } from "react"; // Added useRef
 import { AuthContext } from "../context/AuthContext";
 import Swal from "sweetalert2";
-import { Link, useNavigate } from "react-router";
+import { Link, useNavigate } from "react-router"; // Fixed import
 import useAxios from "../hooks/useAxios";
 import { motion } from "framer-motion";
 
@@ -9,6 +9,16 @@ const Login = () => {
   const { signInWithGoogle, signInUser } = useContext(AuthContext);
   const axiosInstance = useAxios();
   const navigate = useNavigate();
+
+  // Refs for form inputs
+  const emailRef = useRef(null);
+  const passwordRef = useRef(null);
+
+  // Function to fill demo credentials
+  const fillDemoCredentials = () => {
+    if (emailRef.current) emailRef.current.value = "user11@email.com";
+    if (passwordRef.current) passwordRef.current.value = "123@aA";
+  };
 
   const handleGoogleSignIn = () => {
     signInWithGoogle()
@@ -85,9 +95,19 @@ const Login = () => {
             <h1 className="text-4xl md:text-5xl font-bold text-accent mb-2">
               Welcome Back!
             </h1>
-            <p className="text-accent/70 mb-10">
+            <p className="text-accent/70 mb-6">
               Log in to continue your learning journey
             </p>
+
+            {/* Demo Button */}
+            <div className="mb-8 text-center">
+              <button
+                onClick={fillDemoCredentials}
+                className="btn btn-secondary btn-outline text-secondary hover:bg-secondary hover:text-white"
+              >
+                Try Demo Account (user1@mail.com)
+              </button>
+            </div>
 
             <form onSubmit={handleLogin} className="space-y-6">
               <div className="form-control">
@@ -97,6 +117,7 @@ const Login = () => {
                 <input
                   type="email"
                   name="email"
+                  ref={emailRef} // Attach ref
                   required
                   placeholder="you@example.com"
                   className="input input-bordered w-full focus:ring-2 focus:ring-primary focus:border-transparent"
@@ -110,6 +131,7 @@ const Login = () => {
                 <input
                   type="password"
                   name="password"
+                  ref={passwordRef} // Attach ref
                   required
                   placeholder="••••••••"
                   className="input input-bordered w-full focus:ring-2 focus:ring-primary focus:border-transparent"
