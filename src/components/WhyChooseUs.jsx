@@ -1,50 +1,86 @@
-import React from 'react';
-import MyContainer from './MyContainer';
-import { FaCar } from 'react-icons/fa';
-import { GiDirectionSigns } from 'react-icons/gi';
-import { GrUserExpert } from 'react-icons/gr';
-import { motion } from "framer-motion";
-import { FaGaugeHigh } from 'react-icons/fa6';
+import { FaClock, FaChalkboardTeacher, FaCertificate, FaSmile } from "react-icons/fa";
 
 const WhyChooseUs = () => {
-    return (
-        <motion.div 
-                initial={{ opacity: 0, y: 60 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.7, ease: "easeOut" }}
-                viewport={{ once: false }}
-                className='my-20'>
-            <MyContainer >
-                <h1 className='text-5xl font-bold my-20 text-center'>Why Choose Us?</h1>
-                <div className='grid grid-cols-1 md:grid-cols-3 gap-5'>
-                    <div className='transition duration-300 ease-in-out p-5 rounded-2xl shadow-lg hover:bg-primary hover:text-white'>
-                        <FaGaugeHigh size={60} />
-                        <h3 className='text-2xl font-semibold my-3'>100+ High Impact Courses</h3>
-                        <p>Explore practical, career-boosting courses that deliver real skills and results.</p>
-                    </div>
-                    
-                    <div className='transition duration-300 ease-in-out p-5 rounded-2xl shadow-lg hover:bg-primary hover:text-white'>
-                        <GiDirectionSigns size={60} />
-                        <h3 className='text-2xl font-semibold my-3'>Flexible Learning</h3>
-                        <p>Learn anytime, anywhere with courses designed to fit your schedule.</p>
-                    </div>
-                    
-                    <div className='transition duration-300 ease-in-out p-5 rounded-2xl shadow-lg hover:bg-primary hover:text-white'>
-                        <GrUserExpert size={60} />
-                        <h3 className='text-2xl font-semibold my-3'>Expert Instructor</h3>
-                        <p>Gain knowledge from experienced instructors dedicated to your learning success.</p>
-                    </div>
-                    
-                    
-                </div>
-            </MyContainer>
-        </motion.div>
-    );
+  return (
+    <section className="bg-base-200 py-20">
+      <div className="max-w-7xl mx-auto px-6">
+        
+        {/* SECTION TITLE */}
+        <div className="text-center mb-14">
+          <h2 className="text-3xl sm:text-4xl font-bold">
+            Why <span className="text-primary">Choose Us?</span>
+          </h2>
+          <span className="inline-block w-14 h-1 bg-primary mt-4 rounded-full"></span>
+        </div>
+
+        {/* CONTENT */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+          
+          {/* LEFT FEATURES */}
+          <div className="space-y-6">
+            
+            <FeatureCard
+              icon={<FaClock />}
+              title="Learn at Your Own Pace"
+              text="Access courses anytime and learn whenever it suits your schedule."
+              color="bg-blue-100 text-blue-600"
+            />
+
+            <FeatureCard
+              icon={<FaChalkboardTeacher />}
+              title="Expert Instructors"
+              text="Learn from experienced mentors and industry professionals."
+              color="bg-purple-100 text-purple-600"
+            />
+
+            <FeatureCard
+              icon={<FaCertificate />}
+              title="Verified Certificates"
+              text="Earn certificates that add real value to your career."
+              color="bg-orange-100 text-orange-600"
+            />
+
+            <FeatureCard
+              icon={<FaSmile />}
+              title="Student-Focused Experience"
+              text="Simple, engaging, and comfortable learning environment."
+              color="bg-green-100 text-green-600"
+            />
+          </div>
+
+          {/* RIGHT IMAGE */}
+          <div className="relative">
+            <div className="rounded-3xl overflow-hidden shadow-lg">
+              <img
+                src="/why-choose-us-image.jpg" // replace with your image
+                alt="Online Learning"
+                className="w-full h-full object-cover"
+              />
+            </div>
+
+            {/* DECOR BORDER */}
+            <div className="absolute -top-4 -left-4 w-full h-full border-4 border-primary rounded-3xl -z-10"></div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+  );
 };
 
 export default WhyChooseUs;
 
-
-//career-boost certify
-// 100+ High Impact Courses
-// Flexible Learning
+/* FEATURE CARD */
+const FeatureCard = ({ icon, title, text, color }) => {
+  return (
+    <div className="flex gap-4 bg-base-100 p-6 rounded-xl shadow-sm hover:shadow-md transition">
+      <div className={`w-12 h-12 rounded-lg flex items-center justify-center ${color}`}>
+        {icon}
+      </div>
+      <div>
+        <h4 className="font-semibold text-lg">{title}</h4>
+        <p className="text-gray-500 text-sm mt-1">{text}</p>
+      </div>
+    </div>
+  );
+};

@@ -24,10 +24,6 @@ const Banner = () => {
           transition={{ duration: 0.6 }}
           className="text-center lg:text-left"
         >
-          <p className="text-sm text-accent mb-4 flex items-center justify-center lg:justify-start gap-2">
-            <span className="text-secondary">✳</span> 30 Days free trial
-          </p>
-
           <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-primary leading-tight">
             Build Your Skills <br />
             on the{" "}

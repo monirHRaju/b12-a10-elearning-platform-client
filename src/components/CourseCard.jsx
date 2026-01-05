@@ -1,10 +1,7 @@
-import React, { use } from "react";
+import React from "react";
 import { BiSolidTachometer } from "react-icons/bi";
 import { FaClock, FaStar, FaUser } from "react-icons/fa";
-import { Link, useNavigate } from "react-router";
-import { AuthContext } from "../context/AuthContext";
-import Swal from "sweetalert2";
-import useAxios from "../hooks/useAxios";
+import { Link } from "react-router";
 
 const CourseCard = ({ course }) => {
   const {
@@ -22,46 +19,7 @@ const CourseCard = ({ course }) => {
     rating,
   } = course;
 
-  const { user } = use(AuthContext);
-  const axiosSecure = useAxios();
-  const navigate = useNavigate();
 
-  const handleEnroll = () => {
-    if (!user) {
-      Swal.fire({
-        title: "Please login to enroll",
-        position: "top-end",
-        icon: "warning",
-        showConfirmButton: false,
-        timer: 1500,
-      });
-      return;
-    }
-
-    const enrollData = { ...course, enrolled_by: user.email };
-
-    axiosSecure
-      .post("/enroll", enrollData)
-      .then(() => {
-        navigate("/my-enrolled-courses");
-        Swal.fire({
-          title: "Enrolled Successfully!",
-          position: "top-end",
-          icon: "success",
-          showConfirmButton: false,
-          timer: 1500,
-        });
-      })
-      .catch(() => {
-        Swal.fire({
-          title: "Already Enrolled",
-          position: "top-end",
-          icon: "error",
-          showConfirmButton: false,
-          timer: 1500,
-        });
-      });
-  };
 
   return (
     <div className="group bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300">
@@ -84,11 +42,11 @@ const CourseCard = ({ course }) => {
       {/* CONTENT */}
       <div className="p-5">
         <p className="text-xs text-gray-500 mb-1">
-          {category} • {instructor_name}
+          {category} | By {instructor_name}
         </p>
 
         <Link to={`/course-details/${_id}`}>
-          <h2 className="text-lg font-semibold leading-snug hover:text-primary transition">
+          <h2 className="text-lg font-semibold leading-snug hover:text-secondary dark:text-primary transition">
             {title}
           </h2>
         </Link>
@@ -119,12 +77,9 @@ const CourseCard = ({ course }) => {
             ${price}
           </p>
 
-          <button
-            onClick={handleEnroll}
+          <Link to={`/course-details/${_id}`}
             className="px-4 py-2 text-sm font-medium rounded-full bg-primary text-white hover:bg-primary/90 transition"
-          >
-            Enroll Now
-          </button>
+          > Enroll Now </Link>
         </div>
       </div>
     </div>

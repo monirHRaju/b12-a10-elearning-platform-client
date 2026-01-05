@@ -2,8 +2,8 @@ import axios from "axios";
 import useAuth from "./useAuth";
 
 const instance = axios.create({
-    baseURL: 'https://elearning-service.vercel.app/'
-    // baseURL: 'http://localhost:3000'
+    // baseURL: 'https://elearning-service.vercel.app/'
+    baseURL: 'http://localhost:3000'
 })
 
 const useAxiosSecure = () => {

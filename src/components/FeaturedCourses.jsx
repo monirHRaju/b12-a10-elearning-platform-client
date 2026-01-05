@@ -18,8 +18,8 @@ const FeaturedCourses = () => {
   }, [axiosInstance]);
 
   return (
-    <div className="bg-base-200">
-      <h2 className="text-3xl sm:text-4xl font-bold text-center my-16">
+    <div className="bg-base-200 py-10">
+      <h2 className="text-3xl sm:text-4xl font-bold text-center py-16">
         Featured <span className="text-primary">Courses</span>
       </h2>
       <MyContainer>
