@@ -4,7 +4,7 @@ import MyContainer from "./MyContainer";
 import MyNav from "./MyNav";
 import ThemeToggle from "./ThemeToggle";
 import { AuthContext } from "../context/AuthContext";
-import Swal from "sweetalert2";
+import toast from "react-hot-toast";
 import logo from "../assets/e-logo.png";
 
 const Navbar = () => {
@@ -34,13 +34,7 @@ const Navbar = () => {
   const handleSignOut = () => {
     signOutUser()
       .then(() => {
-        Swal.fire({
-          title: "You are Logged Out!",
-          position: "top-end",
-          icon: "warning",
-          showConfirmButton: false,
-          timer: 2000,
-        });
+        toast.success("You are logged out!");
         navigate("/");
       })
       .catch((err) => console.log(err.message));
@@ -90,7 +84,7 @@ const Navbar = () => {
 
           {/* CENTER */}
           <div className="navbar-center hidden lg:flex">
-            <ul className="menu menu-horizontal gap-1 text-accent font-medium">
+            <ul className="menu menu-horizontal gap-1 font-medium">
               {navlinks}
             </ul>
           </div>

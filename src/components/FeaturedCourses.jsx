@@ -19,7 +19,7 @@ const FeaturedCourses = () => {
 
   return (
     <div className="bg-base-200 py-10">
-      <h2 className="text-3xl sm:text-4xl font-bold text-center py-16">
+      <h2 className="text-3xl sm:text-4xl font-bold text-center py-16 text-accent">
         Featured <span className="text-primary">Courses</span>
       </h2>
       <MyContainer>

@@ -70,7 +70,7 @@ const Hero = () => {
               transition={{ delay: 0.8 }}
               className="flex flex-wrap gap-4"
             >
-              <Link to={'/courses'} className="btn btn-lg bg-white text-primary cursor-pointer hover:bg-gray-100 shadow-xl">
+              <Link to={'/courses'} className="btn btn-lg bg-white text-primary cursor-pointer hover:bg-base-200 shadow-xl">
                 Browse All Courses
               </Link>
               <button className="btn btn-lg btn-outline text-white border-white cursor-pointer hover:bg-white hover:text-primary">

@@ -31,7 +31,7 @@ const TopInstructor = () => {
           <h2 className="text-3xl sm:text-4xl font-bold">
             Top <span className="text-primary">Instructors</span>
           </h2>
-          <p className="mt-3 text-gray-500 max-w-xl mx-auto">
+          <p className="mt-3 text-base-content/70 max-w-xl mx-auto">
             Learn from industry experts who are passionate about teaching
           </p>
         </div>
@@ -71,7 +71,7 @@ const InstructorCard = ({ name, img, index }) => {
       {/* INFO */}
       <div className="text-center mt-6">
         <h3 className="text-xl font-semibold">{name}</h3>
-        <p className="text-sm text-gray-500 mt-1">
+        <p className="text-sm text-base-content/70 mt-1">
           Senior Instructor
         </p>
       </div>

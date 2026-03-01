@@ -1,6 +1,6 @@
 import React, { useContext, useState } from 'react';
 import { AuthContext } from '../context/AuthContext';
-import Swal from 'sweetalert2';
+import toast from 'react-hot-toast';
 import { useNavigate } from 'react-router';
 import useAxiosSecure from '../hooks/useAxiosSecure';
 import { motion } from 'framer-motion';
@@ -43,23 +43,13 @@ const CreateCourse = () => {
     axiosSecure.post('/courses', newCourse)
       .then((res) => {
         if (res.data.insertedId) {
-          Swal.fire({
-            title: 'Course Created Successfully!',
-            text: 'Your new course is now live and ready for students.',
-            icon: 'success',
-            confirmButtonColor: '#006b61',
-          });
+          toast.success('Course created successfully!');
           form.reset();
           navigate('/my-added-courses');
         }
       })
       .catch((err) => {
-        Swal.fire({
-          title: 'Failed to Create Course',
-          text: err.message || 'Something went wrong',
-          icon: 'error',
-          confirmButtonColor: '#fe8b5c',
-        });
+        toast.error(err.message || 'Failed to create course');
       });
   };
 

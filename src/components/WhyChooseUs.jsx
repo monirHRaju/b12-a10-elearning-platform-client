@@ -76,7 +76,7 @@ const WhyChooseUs = () => {
                 icon={<FaClock className="text-2xl" />}
                 title="Learn at Your Own Pace"
                 text="Access courses anytime and learn whenever it suits your schedule."
-                color="bg-blue-100 text-blue-600"
+                color="bg-primary/10 text-primary"
               />
             </motion.div>
 
@@ -85,7 +85,7 @@ const WhyChooseUs = () => {
                 icon={<FaChalkboardTeacher className="text-2xl" />}
                 title="Expert Instructors"
                 text="Learn from experienced mentors and industry professionals."
-                color="bg-purple-100 text-purple-600"
+                color="bg-secondary/10 text-secondary"
               />
             </motion.div>
 
@@ -94,7 +94,7 @@ const WhyChooseUs = () => {
                 icon={<FaCertificate className="text-2xl" />}
                 title="Verified Certificates"
                 text="Earn certificates that add real value to your career."
-                color="bg-orange-100 text-orange-600"
+                color="bg-primary/10 text-primary"
               />
             </motion.div>
 
@@ -103,7 +103,7 @@ const WhyChooseUs = () => {
                 icon={<FaSmile className="text-2xl" />}
                 title="Student-Focused Experience"
                 text="Simple, engaging, and comfortable learning environment."
-                color="bg-green-100 text-green-600"
+                color="bg-secondary/10 text-secondary"
               />
             </motion.div>
           </motion.div>

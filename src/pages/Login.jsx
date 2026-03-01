@@ -1,7 +1,7 @@
-import React, { useContext, useRef } from "react"; // Added useRef
+import React, { useContext, useRef } from "react";
 import { AuthContext } from "../context/AuthContext";
-import Swal from "sweetalert2";
-import { Link, useNavigate } from "react-router"; // Fixed import
+import toast from "react-hot-toast";
+import { Link, useNavigate } from "react-router";
 import useAxios from "../hooks/useAxios";
 import { motion } from "framer-motion";
 
@@ -31,26 +31,14 @@ const Login = () => {
 
         axiosInstance.post("/users", newUser).then((data) => {
           if (data.data.insertedId || data.data.message === "User already exists") {
-            Swal.fire({
-              title: "Logged In Successfully!",
-              icon: "success",
-              position: "top-end",
-              showConfirmButton: false,
-              timer: 1500,
-            });
+            toast.success("Logged in successfully!");
           }
           navigate("/");
         });
       })
       .catch((err) => {
         console.log(err.message);
-        Swal.fire({
-          title: "Google Login Failed",
-          text: err.message,
-          icon: "error",
-          position: "top-end",
-          timer: 2000,
-        });
+        toast.error(err.message || "Google login failed");
       });
   };
 
@@ -61,23 +49,11 @@ const Login = () => {
 
     signInUser(email, password)
       .then(() => {
-        Swal.fire({
-          title: "Logged In Successfully!",
-          icon: "success",
-          position: "top-end",
-          showConfirmButton: false,
-          timer: 1500,
-        });
+        toast.success("Logged in successfully!");
         setTimeout(() => navigate("/"), 1000);
       })
       .catch((error) => {
-        Swal.fire({
-          title: "Login Failed!",
-          text: error.message || error.code,
-          icon: "warning",
-          position: "top-end",
-          timer: 2500,
-        });
+        toast.error(error.message || error.code || "Login failed");
       });
   };
 
@@ -152,7 +128,7 @@ const Login = () => {
 
             <button
               onClick={handleGoogleSignIn}
-              className="btn btn-outline w-full border-gray-300 hover:bg-gray-50 flex items-center gap-3 text-accent"
+              className="btn btn-outline w-full border-base-300 hover:bg-base-200 flex items-center gap-3 text-accent"
             >
               <svg width="20" height="20" viewBox="0 0 533 533" xmlns="http://www.w3.org/2000/svg">
                 <path d="M533 261c0-19-2-37-5-55H272v104h147c-6 32-25 59-53 77l82 64c48-44 82-111 82-190z" fill="#4285f4"/>

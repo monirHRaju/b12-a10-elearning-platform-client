@@ -3,6 +3,7 @@ import useAxiosSecure from '../hooks/useAxiosSecure';
 import { AuthContext } from '../context/AuthContext';
 import CourseList from '../components/CourseList';
 import MyContainer from '../components/MyContainer';
+import Loading from '../components/Loading';
 
 const MyCourses = () => {
     const [loading, setLoading] = useState(true)
@@ -23,11 +24,11 @@ const MyCourses = () => {
 
 
     if(loading){
-            return <div>Please wait ... Loading ... <span className="loading loading-spinner text-secondary"></span></div>
+            return <Loading />
         }
     return (
         <MyContainer>
-          <h1 className='text-4xl font-semibold my-15 text-center'>Manage Added Courses</h1>
+          <h1 className='text-4xl font-semibold my-15 text-center text-accent'>Manage Added <span className="text-primary">Courses</span></h1>
              <div className="overflow-x-auto">
         <table className="table mb-[300px]">
           {/* head */}

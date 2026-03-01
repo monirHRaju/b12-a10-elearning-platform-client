@@ -22,7 +22,7 @@ const CourseCard = ({ course }) => {
 
 
   return (
-    <div className="group bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300">
+    <div className="group bg-base-100 rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300">
       
       {/* IMAGE */}
       <div className="relative">
@@ -41,7 +41,7 @@ const CourseCard = ({ course }) => {
 
       {/* CONTENT */}
       <div className="p-5">
-        <p className="text-xs text-gray-500 mb-1">
+        <p className="text-xs text-base-content/60 mb-1">
           {category} | By {instructor_name}
         </p>
 
@@ -51,12 +51,12 @@ const CourseCard = ({ course }) => {
           </h2>
         </Link>
 
-        <p className="text-sm text-gray-600 mt-2 line-clamp-2">
+        <p className="text-sm text-base-content/70 mt-2 line-clamp-2">
           {description}
         </p>
 
         {/* META */}
-        <div className="flex flex-wrap gap-3 mt-4 text-xs text-gray-500">
+        <div className="flex flex-wrap gap-3 mt-4 text-xs text-base-content/60">
           <span className="flex items-center gap-1">
             <FaStar className="text-yellow-400" /> {rating}
           </span>

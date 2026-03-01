@@ -1,6 +1,6 @@
 import React, { useContext, useState } from "react";
 import { AuthContext } from "../context/AuthContext";
-import Swal from "sweetalert2";
+import toast from "react-hot-toast";
 import { Link, useNavigate } from "react-router";
 import useAxios from "../hooks/useAxios";
 import { motion } from "framer-motion";
@@ -30,26 +30,14 @@ const Register = () => {
   
           axiosInstance.post("/users", newUser).then((data) => {
             if (data.data.insertedId || data.data.message === "User already exists") {
-              Swal.fire({
-                title: "Logged In Successfully!",
-                icon: "success",
-                position: "top-end",
-                showConfirmButton: false,
-                timer: 1500,
-              });
+              toast.success("Logged in successfully!");
             }
             navigate("/");
           });
         })
         .catch((err) => {
           console.log(err.message);
-          Swal.fire({
-            title: "Google Login Failed",
-            text: err.message,
-            icon: "error",
-            position: "top-end",
-            timer: 2000,
-          });
+          toast.error(err.message || "Google login failed");
         });
     };
 
@@ -88,19 +76,10 @@ const Register = () => {
           imageUrl = data.data.url;
 
         } else {
-          Swal.fire({
-            title: "Image Upload Failed",
-            text: "Using default avatar",
-            icon: "warning",
-            timer: 2000,
-          });
+          toast("Image upload failed, using default avatar", { icon: "⚠️" });
         }
       } catch (err) {
-        Swal.fire({
-          title: "Upload Error",
-          text: "Could not upload image",
-          icon: "error",
-        });
+        toast.error("Could not upload image");
         setUploading(false);
         return;
       }
@@ -113,13 +92,7 @@ const Register = () => {
 
         axiosInstance.post("/users", newUser).then((data) => {
           if (data.data.insertedId) {
-            Swal.fire({
-              title: "Account Created Successfully!",
-              icon: "success",
-              position: "top-end",
-              showConfirmButton: false,
-              timer: 1500,
-            })
+            toast.success("Account created successfully!");
             // Update Firebase user profile
             updateUserProfile({
               displayName: name,
@@ -133,13 +106,7 @@ const Register = () => {
         });
       })
       .catch((err) => {
-        Swal.fire({
-          title: "Registration Failed!",
-          text: err.message,
-          icon: "error",
-          position: "top-end",
-          timer: 2500,
-        });
+        toast.error(err.message || "Registration failed");
         setUploading(false);
       });
   };

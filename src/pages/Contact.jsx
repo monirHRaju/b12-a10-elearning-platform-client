@@ -8,10 +8,10 @@ const Contact = () => {
 
         {/* HEADER */}
         <div className="text-center max-w-2xl mx-auto mb-16">
-          <h1 className="text-3xl sm:text-4xl font-bold">
+          <h1 className="text-3xl sm:text-4xl font-bold text-accent">
             Get in <span className="text-primary">Touch</span>
           </h1>
-          <p className="mt-4 text-gray-500">
+          <p className="mt-4 text-base-content/70">
             Have questions about courses, instructors, or support?
             We’re here to help.
           </p>
@@ -22,41 +22,41 @@ const Contact = () => {
 
           {/* CONTACT FORM */}
           <div className="bg-base-100 rounded-2xl shadow-md p-8">
-            <h2 className="text-2xl font-semibold mb-6">
+            <h2 className="text-2xl font-semibold mb-6 text-accent">
               Send us a message
             </h2>
 
             <form className="space-y-5">
               <div>
                 <label className="label">
-                  <span className="label-text font-medium">Your Name</span>
+                  <span className="label-text font-medium text-accent">Your Name</span>
                 </label>
                 <input
                   type="text"
                   placeholder="John Doe"
-                  className="input input-bordered w-full"
+                  className="input input-bordered w-full focus:ring-2 focus:ring-primary"
                 />
               </div>
 
               <div>
                 <label className="label">
-                  <span className="label-text font-medium">Email Address</span>
+                  <span className="label-text font-medium text-accent">Email Address</span>
                 </label>
                 <input
                   type="email"
                   placeholder="john@example.com"
-                  className="input input-bordered w-full"
+                  className="input input-bordered w-full focus:ring-2 focus:ring-primary"
                 />
               </div>
 
               <div>
                 <label className="label">
-                  <span className="label-text font-medium">Message</span>
+                  <span className="label-text font-medium text-accent">Message</span>
                 </label>
                 <textarea
                   rows="5"
                   placeholder="Write your message..."
-                  className="textarea textarea-bordered w-full"
+                  className="textarea textarea-bordered w-full focus:ring-2 focus:ring-primary"
                 ></textarea>
               </div>
 
@@ -112,7 +112,7 @@ const InfoCard = ({ icon, title, text }) => (
     <div className="w-12 h-12 mx-auto mb-4 rounded-full bg-primary/10 text-primary flex items-center justify-center text-xl">
       {icon}
     </div>
-    <h4 className="font-semibold">{title}</h4>
-    <p className="text-sm text-gray-500 mt-1">{text}</p>
+    <h4 className="font-semibold text-accent">{title}</h4>
+    <p className="text-sm text-base-content/70 mt-1">{text}</p>
   </div>
 );

@@ -1,10 +1,8 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router';
 import useAxiosSecure from '../hooks/useAxiosSecure';
-import { ToastContainer } from 'react-toastify';
-import Swal from 'sweetalert2';
+import toast from 'react-hot-toast';
 import { AuthContext } from '../context/AuthContext';
-import useAxios from '../hooks/useAxios';
 
 const UpdateCourse = () => {
     const [course, setCourse] = useState([])
@@ -14,7 +12,7 @@ const UpdateCourse = () => {
     };
     const navigate = useNavigate()
     const {user} = useContext(AuthContext)
-    const axiosSecure = useAxios()
+    const axiosSecure = useAxiosSecure()
     const {id} = useParams()
     
     const updateCourseInfo = (e) => {
@@ -48,11 +46,7 @@ const UpdateCourse = () => {
         .then( data => {
                 // console.log('after creating course', data.data)
                 if(data.data.insertedId){
-                    Swal.fire({
-                    title: "New Course Created Successfully!",
-                    icon: "success",
-                    draggable: false
-                    });
+                    toast.success("Course updated successfully!");
                 }
 
                 e.target.reset()
@@ -60,12 +54,7 @@ const UpdateCourse = () => {
                 navigate('/my-added-courses')
             })
         .catch(err => {
-                Swal.fire({
-                title: `Failed! ${err.message}`,
-                icon: "warning",
-                draggable: false
-                });
-            
+                toast.error(err.message || "Update failed");
         })
     }
 
@@ -86,50 +75,73 @@ const UpdateCourse = () => {
     
     return (
         <div>
-            <div className="card bg-base-100 mx-auto w-full max-w-sm shrink-0 shadow-2xl my-20">
-            <h1 className="text-3xl font-bold text-center">Update Course Info</h1>
+            <div className="card bg-base-100 mx-auto w-full max-w-2xl shrink-0 shadow-2xl my-20">
+            <h1 className="text-3xl font-bold text-center text-accent">Update Course <span className="text-primary">Info</span></h1>
             <div className="card-body">
 
                 <form onSubmit={updateCourseInfo}>
-                    <fieldset className="fieldset">
-                        <label className="label">Course Title</label>
-                        <input type="text" name='title' defaultValue={course.title} required className="input" placeholder="Course Title" />
+                    <fieldset className="fieldset space-y-4">
+                        <div className="form-control">
+                            <label className="label">
+                                <span className="label-text font-medium text-accent">Course Title</span>
+                            </label>
+                            <input type="text" name='title' defaultValue={course.title} required className="input input-bordered focus:ring-2 focus:ring-primary" placeholder="Course Title" />
+                        </div>
                         
-                        <label className="label">Cover Image</label>
-                        <input type="text" name='image' defaultValue={course.image} required className="input" placeholder="Cover Image" />
+                        <div className="form-control">
+                            <label className="label">
+                                <span className="label-text font-medium text-accent">Cover Image</span>
+                            </label>
+                            <input type="text" name='image' defaultValue={course.image} required className="input input-bordered focus:ring-2 focus:ring-primary" placeholder="Cover Image" />
+                        </div>
                         
-                        <label className="label">Price</label>
-                        <input type="text" name='price' defaultValue={course.price} required className="input" placeholder="price" />
+                        <div className="form-control">
+                            <label className="label">
+                                <span className="label-text font-medium text-accent">Price</span>
+                            </label>
+                            <input type="text" name='price' defaultValue={course.price} required className="input input-bordered focus:ring-2 focus:ring-primary" placeholder="price" />
+                        </div>
                         
+                        <div className="form-control">
+                            <label className="label">
+                                <span className="label-text font-medium text-accent">Duration</span>
+                            </label>
+                            <input type="text" name='duration' defaultValue={course.duration} className="input input-bordered focus:ring-2 focus:ring-primary" placeholder="duration" />
+                        </div>
                         
-                        <label className="label">Duration</label>
-                        <input type="text" name='duration' defaultValue={course.duration} className="input" placeholder="duration" />
+                        <div className="form-control">
+                            <label className="label">
+                                <span className="label-text font-medium text-accent">Category</span>
+                            </label>
+                            <input type="text" name='category' defaultValue={course.category} required className="input input-bordered focus:ring-2 focus:ring-primary" placeholder="category" />
+                        </div>
                         
-                        <label className="label">Category</label>
-                        <input type="text" name='category' defaultValue={course.category} required className="input" placeholder="category" />
+                        <div className="form-control">
+                            <label className="label">
+                                <span className="label-text font-medium text-accent">Description</span>
+                            </label>
+                            <textarea name='description' className="textarea textarea-bordered focus:ring-2 focus:ring-primary" defaultValue={course.description} rows='15' placeholder="description" />
+                        </div>
                         
-                        <label className="label">Description</label>
-                        <textarea name='description' className="input" defaultValue={course.description} rows='15' placeholder="description" >
-                           
-                        </textarea>
+                        <div className="form-control">
+                            <label className="label">
+                                <span className="label-text font-medium text-accent">Level</span>
+                            </label>
+                            <select className="select select-bordered focus:ring-2 focus:ring-primary" value={course?.difficulty_level ?? ''} name='difficulty_level'>
+                                <option>Beginner</option>
+                                <option>Intermediate</option>
+                                <option>Expert</option>
+                            </select>
+                        </div>
                         
-                        <label className="label">Level</label>
-                        <select className="input" value={course.difficulty_level} name='difficulty_level'>
-                            <option>Beginner</option>
-                            <option>Intermediate</option>
-                            <option>Expert</option>
-                        </select>
+                        <div className="form-control">
+                            <label className="label cursor-pointer justify-start gap-3">
+                                <input type="checkbox" className="checkbox checkbox-primary" onChange={handleChange} />
+                                <span className="label-text font-medium text-accent">Featured Course</span>
+                            </label>
+                        </div>
                         
-                        <label className="label">
-                        <input 
-                        type="checkbox"
-                        
-                        onChange={handleChange}
-                         />
-                         Featured Course
-                         </label>
-                        
-                        <button className="btn btn-neutral mt-4">Update Course</button>
+                        <button className="btn btn-primary mt-4 w-full">Update Course</button>
                     </fieldset>
                     
                     
@@ -137,7 +149,6 @@ const UpdateCourse = () => {
               
                     
                 
-                <ToastContainer></ToastContainer>
             </div>
         </div>
         </div>

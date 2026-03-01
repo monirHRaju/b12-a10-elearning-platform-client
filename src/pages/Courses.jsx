@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import CourseCard from '../components/CourseCard';
 import MyContainer from '../components/MyContainer';
 import useAxios from '../hooks/useAxios';
+import Loading from '../components/Loading';
 
 const Courses = () => {
   const [courses, setCourses] = useState([]);
@@ -96,7 +97,7 @@ const Courses = () => {
           placeholder="Search courses..."
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
-          className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary"
+          className="w-full px-4 py-3 rounded-lg border border-base-300 focus:outline-none focus:ring-2 focus:ring-primary"
         />
       </div>
 
@@ -107,7 +108,7 @@ const Courses = () => {
           <select
             value={selectedCategory}
             onChange={(e) => setSelectedCategory(e.target.value)}
-            className="px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
+            className="px-4 py-2 border border-base-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
           >
             <option value="all">All Categories</option>
             {categories.map((cat) => (
@@ -121,7 +122,7 @@ const Courses = () => {
           <select
             value={selectedPrice}
             onChange={(e) => setSelectedPrice(e.target.value)}
-            className="px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
+            className="px-4 py-2 border border-base-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
           >
             <option value="all">All Prices</option>
             <option value="free">Free Only</option>
@@ -132,7 +133,7 @@ const Courses = () => {
           <select
             value={selectedLevel}
             onChange={(e) => setSelectedLevel(e.target.value)}
-            className="px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
+            className="px-4 py-2 border border-base-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
           >
             <option value="all">All Levels</option>
             <option value="Beginner">Beginner</option>
@@ -145,7 +146,7 @@ const Courses = () => {
         <select
           value={sortBy}
           onChange={(e) => setSortBy(e.target.value)}
-          className="px-6 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
+          className="px-6 py-2 border border-base-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
         >
           <option value="rating-desc">Highest Rated</option>
           <option value="price-low">Price: Low to High</option>
@@ -156,13 +157,13 @@ const Courses = () => {
       </div>
 
       {/* Results Count */}
-      <p className="text-gray-600 mb-6">
+      <p className="text-base-content/70 mb-6">
         Showing {filteredCourses.length} of {courses.length} courses
       </p>
 
       {/* Loading State */}
       {loading ? (
-        <div className="text-center py-10">Loading courses...</div>
+        <Loading />
       ) : (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-7">
           {filteredCourses.map((course) => (
@@ -173,7 +174,7 @@ const Courses = () => {
 
       {/* No Results */}
       {!loading && filteredCourses.length === 0 && (
-        <div className="text-center py-16 text-gray-500">
+        <div className="text-center py-16 text-base-content/70">
           <p className="text-2xl">No courses found matching your filters.</p>
           <button
             onClick={() => {

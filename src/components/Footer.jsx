@@ -10,7 +10,7 @@ import logo from "../assets/e-logo.png";
 
 const Footer = () => {
   return (
-    <footer className="bg-accent text-base-300 pt-20">
+    <footer className="bg-primary text-base-300 pt-20">
       <MyContainer>
         {/* GRID */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-12 pb-16">
@@ -95,7 +95,7 @@ const FooterLink = ({ to, children }) => (
 );
 
 const SocialIcon = ({ icon }) => (
-  <span className="w-10 h-10 rounded-full bg-base-200/10 flex items-center justify-center text-white hover:bg-primary hover:text-white transition cursor-pointer">
+  <span className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center text-white hover:bg-secondary hover:text-white transition cursor-pointer">
     {icon}
   </span>
 );
