@@ -1,22 +1,22 @@
 import axios from "axios";
-import useAuth from "./useAuth";
+import { auth } from "../firebase/firebase.config";
 
 const instance = axios.create({
-    // baseURL: 'https://elearning-service.vercel.app'
-    baseURL: 'http://localhost:3000'
-})
+    baseURL: import.meta.env.VITE_API_URL || 'http://localhost:3000',
+});
+
+// Add interceptor once - uses Firebase currentUser for fresh token
+instance.interceptors.request.use(async (config) => {
+    const user = auth.currentUser;
+    if (user) {
+        const token = await user.getIdToken();
+        config.headers.authorization = `Bearer ${token}`;
+    }
+    return config;
+});
 
 const useAxiosSecure = () => {
-    const {user} = useAuth();
-
-    instance.interceptors.request.use((config) => {
-        // console.log(config)
-        config.headers.authorization = `Bearer ${user.accessToken}`
-
-        return config
-    })
-
-    return instance
-}
+    return instance;
+};
 
 export default useAxiosSecure;

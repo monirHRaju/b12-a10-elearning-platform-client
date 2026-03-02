@@ -23,7 +23,7 @@ const Navbar = () => {
 
       {user && (
         <>
-          
+          <MyNav to="/dashboard">Dashboard</MyNav>
           <MyNav to="/my-added-courses">My Added</MyNav>
           <MyNav to="/my-enrolled-courses">My Enrolled</MyNav>
         </>
@@ -41,7 +41,7 @@ const Navbar = () => {
   };
 
   return (
-    <div className="sticky top-0 z-50 bg-base-200/80 backdrop-blur border-b border-base-300">
+    <div className="sticky top-0 z-50 bg-base-200/80 backdrop-blur border-b border-base-300 px-4 lg:px-0">
       <MyContainer>
         <div className="navbar px-0 min-h-[72px]">
           

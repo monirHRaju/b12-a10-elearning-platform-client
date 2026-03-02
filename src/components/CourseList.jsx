@@ -6,7 +6,7 @@ import useAxios from "../hooks/useAxios";
 import toast from "react-hot-toast";
 import ConfirmModal from "./ConfirmModal";
 
-const CourseList = ({course}) => {
+const CourseList = ({ course, onDeleteSuccess }) => {
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const axiosInstance = useAxios();
   const navigate = useNavigate();
@@ -19,7 +19,8 @@ const CourseList = ({course}) => {
     axiosInstance.delete(`/courses/${course._id}`)
       .then(() => {
         toast.success("Course deleted");
-        navigate('/my-added-courses');
+        if (onDeleteSuccess) onDeleteSuccess(course._id);
+        else navigate('/my-added-courses');
       })
       .catch(err => {
         toast.error(err?.message || "Failed to delete");

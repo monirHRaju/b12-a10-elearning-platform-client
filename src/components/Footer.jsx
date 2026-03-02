@@ -10,13 +10,13 @@ import logo from "../assets/e-logo.png";
 
 const Footer = () => {
   return (
-    <footer className="bg-primary text-base-300 pt-20">
+    <footer className="bg-primary text-white dark:text-white pt-20 px-4 lg:px-0 ">
       <MyContainer>
         {/* GRID */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-12 pb-16">
+        <div className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 pb-16 flex flex-col items-center lg:items-start justify-center text-center lg:text-left">
 
           {/* BRAND */}
-          <div>
+          <div className="flex flex-col items-center lg:items-start justify-center text-center lg:text-left pr-4">
             <Link to={'/'} className="flex items-center gap-3 mb-4">
               <img src={logo} className="w-10" alt="e-learning" />
               <h3 className="text-2xl font-bold text-white">e-Learning</h3>
@@ -64,7 +64,7 @@ const Footer = () => {
         <div className="border-t border-base-300/20"></div>
 
         {/* COPYRIGHT */}
-        <div className="py-6 text-center text-sm text-base-300">
+        <div className="py-6 text-center text-sm">
           © {new Date().getFullYear()} e-Learning Platform. All rights reserved.
         </div>
       </MyContainer>

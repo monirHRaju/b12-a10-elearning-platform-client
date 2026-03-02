@@ -1,19 +1,22 @@
 import React from 'react';
-import Banner from '../components/Hero';
+import Hero from '../components/Hero';
 import FeaturedCourses from '../components/FeaturedCourses';
+import StatsSection from '../components/StatsSection';
+import CourseCategories from '../components/CourseCategories';
 import WhyChooseUs from '../components/WhyChooseUs';
 import TopInstructor from '../components/TopInstructor';
-import Hero from '../components/Hero';
-
+import Testimonials from '../components/Testimonials';
 
 const Homepage = () => {
-    
     return (
         <>
-            <Hero></Hero>
-            <FeaturedCourses></FeaturedCourses>
-            <WhyChooseUs></WhyChooseUs>
-            <TopInstructor></TopInstructor>
+            <Hero />
+            <FeaturedCourses />
+            <StatsSection />
+            <CourseCategories />
+            <WhyChooseUs />
+            <TopInstructor />
+            <Testimonials />
         </>
     );
 };

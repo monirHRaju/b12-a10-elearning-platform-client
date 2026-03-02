@@ -26,6 +26,7 @@ const Register = () => {
             name: result.user.displayName,
             email: result.user.email,
             image: result.user.photoURL,
+            role: "student",
           };
   
           axiosInstance.post("/users", newUser).then((data) => {
@@ -88,7 +89,8 @@ const Register = () => {
     // Create Firebase user
     createUser(email, password)
       .then(() => {
-        const newUser = { name, email, image: imageUrl };
+        const role = form.role?.value || "student";
+        const newUser = { name, email, image: imageUrl, role: ["student", "tutor"].includes(role) ? role : "student" };
 
         axiosInstance.post("/users", newUser).then((data) => {
           if (data.data.insertedId) {
@@ -181,6 +183,21 @@ const Register = () => {
                   className={`input input-bordered w-full focus:ring-2 ${error ? "input-error" : "focus:ring-primary"}`}
                 />
                 {error && <p className="text-error text-sm mt-2">{error}</p>}
+              </div>
+
+              {/* Role Selection */}
+              <div className="form-control">
+                <label className="label">
+                  <span className="label-text text-accent font-medium">Register as</span>
+                </label>
+                <select
+                  name="role"
+                  className="select select-bordered w-full focus:ring-2 focus:ring-primary"
+                  defaultValue="student"
+                >
+                  <option value="student">Student</option>
+                  <option value="tutor">Tutor</option>
+                </select>
               </div>
 
               {/* Profile Photo Upload */}

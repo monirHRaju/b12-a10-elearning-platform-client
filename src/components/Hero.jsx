@@ -20,9 +20,9 @@ const Hero = () => {
       </div>
 
       <MyContainer className="relative z-10">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center  p-4 lg:p-0">
           {/* Left: Text & CTA */}
-          <div className="space-y-8">
+          <div className="space-y-8 flex flex-col items-center lg:items-start justify-center text-center lg:text-left">
             <motion.div
               initial="hidden"
               animate="visible"

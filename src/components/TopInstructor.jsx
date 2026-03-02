@@ -24,7 +24,7 @@ const instructors = [
 
 const TopInstructor = () => {
   return (
-    <section className="py-24 bg-base-200">
+    <section className="py-24 bg-base-200 px-6 lg:px-0">
       <MyContainer>
         {/* SECTION TITLE */}
         <div className="text-center mb-16">
@@ -77,7 +77,7 @@ const InstructorCard = ({ name, img, index }) => {
       </div>
 
       {/* SOCIAL ICONS */}
-      <div className="flex justify-center gap-4 mt-6 opacity-0 group-hover:opacity-100 transition">
+      <div className="flex items-center justify-center gap-4 mt-6 transition">
         <SocialIcon icon={<FaFacebook />} />
         <SocialIcon icon={<FaXTwitter />} />
         <SocialIcon icon={<FaLinkedin />} />
