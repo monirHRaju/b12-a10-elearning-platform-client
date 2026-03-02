@@ -19,7 +19,7 @@ const Navbar = () => {
       <MyNav to="/contact">Contact</MyNav>
       <MyNav to="/create-course">Post a Course</MyNav>
 
-      {!user && <MyNav to="/register">Register</MyNav>}
+      
 
       {user && (
         <>
@@ -99,12 +99,14 @@ const Navbar = () => {
                 Sign Out
               </button>
             ) : (
+              <>
               <Link
                 to="/login"
                 className="btn bg-primary text-white border-none hover:opacity-90"
               >
-                Login
+                Sign In
               </Link>
+              </>
             )}
 
             <ThemeToggle />

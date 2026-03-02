@@ -73,7 +73,7 @@ const CourseCard = ({ course }) => {
 
         {/* FOOTER */}
         <div className="mt-5 flex items-center justify-between">
-          <p className="text-xl font-bold text-primary">
+          <p className="text-xl font-bold text-secondary">
             ${price}
           </p>
 

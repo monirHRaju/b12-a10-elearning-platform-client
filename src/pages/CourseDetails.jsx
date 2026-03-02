@@ -51,7 +51,7 @@ export default function CourseDetails() {
         cancelText="Cancel"
         variant="primary"
       />
-      <div className="min-h-screen bg-base-100">
+      <div className="min-h-screen">
         {/* Hero Section */}
         <div className="hero bg-gradient-to-br from-primary to-primary/80 text-white">
           <div className="hero-content flex-col lg:flex-row py-12 max-w-7xl mx-auto px-4">
@@ -98,7 +98,7 @@ export default function CourseDetails() {
           {/* Left Column - What You'll Learn & Course Content */}
           <div className="lg:col-span-2 space-y-8">
             {/* What You'll Learn */}
-            <div className="card bg-base-200 shadow-xl">
+            <div className="card shadow-xl">
               <div className="card-body">
                 <h2 className="card-title text-2xl mb-4 text-accent">What You'll Learn</h2>
                 <p className="mb-6 text-base-content/80">
@@ -110,11 +110,11 @@ export default function CourseDetails() {
             </div>
 
             {/* Course Content */}
-            <div className="card bg-base-200 shadow-xl">
+            <div className="card shadow-xl">
               <div className="card-body">
                 <h2 className="card-title text-2xl mb-6 text-accent">Course Content</h2>
                 <ul className="space-y-4">
-                  <li className="collapse collapse-plus bg-base-100">
+                  <li className="collapse collapse-plus">
                     <input type="checkbox" defaultChecked />
                     <div className="collapse-title text-xl font-medium text-accent">
                       Intro To Course And Study <span className="text-sm text-base-content/60 ml-2">1hr 40min</span>
@@ -126,7 +126,7 @@ export default function CourseDetails() {
                       </ul>
                     </div>
                   </li>
-                  <li className="collapse collapse-plus bg-base-100">
+                  <li className="collapse collapse-plus">
                     <input type="checkbox" />
                     <div className="collapse-title text-xl font-medium text-accent">
                       Course Fundamentals <span className="text-sm text-base-content/60 ml-2">1hr 40min</span>
@@ -138,7 +138,7 @@ export default function CourseDetails() {
             </div>
 
             {/* Instructor */}
-            <div className="card bg-base-200 shadow-xl">
+            <div className="card shadow-xl">
               <div className="card-body">
                 <h2 className="card-title text-2xl mb-6 text-accent">Instructor</h2>
                 <div className="flex items-center gap-6">
@@ -163,7 +163,7 @@ export default function CourseDetails() {
 
           {/* Right Column - Sidebar */}
           <div className="space-y-6">
-            <div className="card bg-base-200 shadow-xl">
+            <div className="card shadow-xl">
               <div className="card-body">
                 <div className="flex items-baseline gap-3 mb-4">
                   <span className="text-4xl font-bold text-primary">${course.price}</span>

@@ -9,12 +9,12 @@ import Hero from '../components/Hero';
 const Homepage = () => {
     
     return (
-        <div>
+        <>
             <Hero></Hero>
             <FeaturedCourses></FeaturedCourses>
             <WhyChooseUs></WhyChooseUs>
             <TopInstructor></TopInstructor>
-        </div>
+        </>
     );
 };
 

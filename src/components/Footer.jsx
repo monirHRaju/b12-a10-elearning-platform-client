@@ -17,10 +17,10 @@ const Footer = () => {
 
           {/* BRAND */}
           <div>
-            <div className="flex items-center gap-3 mb-4">
+            <Link to={'/'} className="flex items-center gap-3 mb-4">
               <img src={logo} className="w-10" alt="e-learning" />
               <h3 className="text-2xl font-bold text-white">e-Learning</h3>
-            </div>
+            </Link>
             <p className="text-sm leading-relaxed">
               Learn anytime, anywhere with industry-ready courses taught by
               expert instructors.

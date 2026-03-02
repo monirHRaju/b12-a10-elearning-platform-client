@@ -88,7 +88,7 @@ const Courses = () => {
 
   return (
     <MyContainer>
-      <h1 className="text-4xl font-bold text-primary text-center my-8">All Courses</h1>
+      <h1 className="text-4xl font-bold text-primary text-center my-18">All Courses</h1>
 
       {/* Search Bar */}
       <div className="max-w-2xl mx-auto mb-8">

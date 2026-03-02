@@ -1,12 +1,13 @@
 import React from 'react';
 import MyContainer from '../components/MyContainer';
+import { Link } from 'react-router';
 
 const About = () => {
   return (
     <>
       {/* Hero Section */}
       <section className="relative bg-gradient-to-br from-primary to-primary/80 text-white py-24 overflow-hidden">
-        <div className="absolute inset-0 bg-black opacity-20"></div>
+        <div className="absolute bg-black opacity-20"></div>
         <MyContainer className="relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div>
@@ -17,13 +18,13 @@ const About = () => {
                 We're on a mission to make high-quality education accessible to everyone, anywhere. 
                 Join millions transforming their careers through our interactive courses.
               </p>
-              <button className="bg-secondary text-white font-semibold px-8 py-4 rounded-full hover:bg-secondary/90 transition shadow-lg">
+              <Link to={'/courses'} className="bg-secondary text-white font-semibold px-8 py-4 rounded-full hover:bg-secondary/90 transition shadow-lg">
                 Explore Courses
-              </button>
+              </Link>
             </div>
             <div className="flex justify-center">
               <img 
-                src="/hero-student.png" 
+                src="https://i.ibb.co.com/MxTBcNMg/learning-online.jpg" 
                 alt="Diverse students learning online" 
                 className="w-full max-w-lg drop-shadow-2xl"
               />
@@ -33,7 +34,7 @@ const About = () => {
       </section>
 
       {/* Stats Section */}
-      <section className="py-16 bg-base-200">
+      <section className="py-16">
         <MyContainer>
           <h2 className="text-4xl font-bold text-center mb-12 text-accent">Our Impact in Numbers</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
@@ -62,7 +63,7 @@ const About = () => {
               { title: 'Vision', desc: 'A world where anyone can acquire new skills and advance their career without barriers.' },
               { title: 'Values', desc: 'Excellence, Inclusivity, Innovation, and Community-Driven Learning.' },
             ].map((item, i) => (
-              <div key={i} className="text-center">
+              <div key={i} className="text-center p-4 rounded-2xl shadow-xl">
                 <div className="bg-primary/10 w-20 h-20 rounded-full mx-auto mb-6 flex items-center justify-center">
                   <span className="text-3xl font-bold text-primary">{item.title[0]}</span>
                 </div>
@@ -75,7 +76,7 @@ const About = () => {
       </section>
 
       {/* Team Section */}
-      <section className="py-20 bg-base-300">
+      <section className="py-20">
         <MyContainer>
           <h2 className="text-4xl font-bold text-center mb-12 text-accent">Meet Our Team</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
@@ -86,7 +87,7 @@ const About = () => {
                 { name: "Emily Davis", role: "Marketing Director", photo: "/user4.png" },
             
             ].map((member, i) => (
-              <div key={i} className="text-center group">
+              <div key={i} className="text-center group shadow-xl p-4 rounded-2xl">
                 <img 
                   src={member.photo} 
                   alt={`Team Member ${member.name}`} 
@@ -123,9 +124,9 @@ const About = () => {
       <section className="py-16 bg-primary text-white text-center">
         <MyContainer>
           <h2 className="text-4xl font-bold mb-6">Ready to Start Your Learning Journey?</h2>
-          <button className="bg-secondary text-white font-semibold px-10 py-5 rounded-full text-xl hover:bg-secondary/90 transition shadow-lg">
+          <Link to={'/courses'} className="bg-secondary text-white font-semibold px-10 py-5 rounded-full text-xl hover:bg-secondary/90 transition shadow-lg">
             Join Us Today
-          </button>
+          </Link>
         </MyContainer>
       </section>
     </>
